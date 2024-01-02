@@ -1,0 +1,10 @@
+{
+  "spellright.language": [
+    "de_CH"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "plaintext",
+    "latex"
+  ]
+}
