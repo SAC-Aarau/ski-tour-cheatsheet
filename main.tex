@@ -1,8 +1,9 @@
 \documentclass[12pt, landscape]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[german=guillemets]{csquotes}
+\usepackage[T1]{fontenc}
+\usepackage[german=swiss]{csquotes}
 \usepackage{multicol, multirow}
-\usepackage[german]{babel}
+\usepackage[ngerman]{babel}
 \usepackage[a4paper, landscape, margin=1.5cm]{geometry}
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
 \usepackage{graphicx}
@@ -12,13 +13,15 @@
 \usepackage[backend=biber, style=authortitle, bibencoding=auto]{biblatex}
 \usepackage[medium, compact]{titlesec}
 \usepackage{url}
+\usepackage{fancyhdr}
 
+% sans-serif urls
 \urlstyle{same}
 
+% color box command
 \newcommand\cbox[2][black]{\textcolor{#1}{\rule{#2}{#2}}}
 
-\MakeAutoQuote{«}{»}
-
+% bibliography setup
 \addbibresource{./bibliography.bib}
 \setlength{\bibhang}{0pt}
 \setlength{\bibitemsep}{8pt}
@@ -46,12 +49,23 @@
 \setlist[enumerate]{nosep, leftmargin=12pt, labelsep=3pt}
 \setlist[itemize]{nosep, leftmargin=10pt, labelsep=3pt}
 
+% disable head rule
+\renewcommand{\headrulewidth}{0pt}
+
 % meta data
 \title{Merkblatt Skitouren}
 \author{Oliver Fabel}
 \date{\today}
 
 \begin{document}
+  \pagestyle{fancy}
+  
+  \fancyhead{}
+
+  \fancyfoot[L]{\footnotesize{Merkblatt Skitouren}}
+  \fancyfoot[C]{\footnotesize\thepage}
+  \fancyfoot[R]{\footnotesize{SAC Aarau}}
+
   \nocite{*}
   \begin{multicols*}{3}[]
     \input{chapters/lvs.tex}
@@ -59,6 +73,7 @@
     \input{chapters/touren.tex}
     \input{chapters/orientierung.tex}
     \input{chapters/ausruestung.tex}
+    \input{chapters/tipps.tex}
     \input{chapters/literatur.tex}
   \end{multicols*}
 \end{document}

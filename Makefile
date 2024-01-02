@@ -5,8 +5,8 @@ MEDIA_TEX_PDF := $(foreach wrd,$(MEDIA_TEX),$(wrd).pdf)
 .PHONY: clear
 
 main.pdf: main.tex $(CHAPTERS) $(MEDIA_TEX_PDF) bibliography.bib
-	biber main
 	pdflatex main.tex
+	biber main
 	pdflatex main.tex
 
 $(CHAPTERS):
