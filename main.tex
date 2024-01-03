@@ -5,7 +5,7 @@
 \usepackage{multicol, multirow}
 \usepackage[ngerman]{babel}
 \usepackage[a4paper, landscape, margin=1.5cm]{geometry}
-\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue, urlcolor=blue]{hyperref}
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage{tikz}
@@ -14,7 +14,8 @@
 \usepackage[medium, compact]{titlesec}
 \usepackage{url}
 \usepackage{fancyhdr}
-\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{booktabs}
 \usepackage{makecell}
 
 % sans-serif urls
@@ -56,10 +57,12 @@
 
 % qr code figure
 \newcommand\qrcode[3]{
-  \begin{tabular}{ll}
-    \makecell{\hspace{-5pt}\includegraphics[width=0.24\linewidth]{#1}} & \makecell[l]{\textbf{\href{https://#2}{#2}}\\#3}
-  \end{tabular}
+  \begin{tabularx}{\linewidth}{lcl}
+    \makecell[l]{\includegraphics[width=0.24\linewidth]{#1}} & \makecell[c]{\hspace{8pt}{ }} & \makecell[X]{#3\\\footnotesize{\href{https://#2}{#2}}}
+  \end{tabularx}
 }
+
+\setlength{\tabcolsep}{0pt}
 
 % meta data
 \title{Merkblatt Skitouren}
@@ -73,7 +76,7 @@
 
   \fancyfoot[L]{\footnotesize{Merkblatt Skitouren}}
   \fancyfoot[C]{\footnotesize\thepage}
-  \fancyfoot[R]{\footnotesize{SAC Aarau}}
+  \fancyfoot[R]{\footnotesize{Publiziert am \today}}
 
   \nocite{*}
   \begin{multicols*}{3}[]
@@ -84,5 +87,6 @@
     \input{chapters/ausruestung.tex}
     \input{chapters/tipps.tex}
     \input{chapters/literatur.tex}
+    \input{chapters/impressum.tex}
   \end{multicols*}
 \end{document}

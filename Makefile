@@ -8,6 +8,7 @@ main.pdf: main.tex $(CHAPTERS) $(MEDIA_TEX_PDF) bibliography.bib
 	pdflatex main.tex
 	biber main
 	pdflatex main.tex
+	pdflatex main.tex
 
 $(CHAPTERS):
 	touch $@
