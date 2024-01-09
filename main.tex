@@ -2,9 +2,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[german=swiss]{csquotes}
-\usepackage{multicol, multirow}
+\usepackage{multicol}
+\usepackage{multirow}
 \usepackage[ngerman]{babel}
-\usepackage[a4paper, landscape, margin=15mm, right=61.842515mm]{geometry}
+\usepackage[a4paper, landscape, margin=15mm]{geometry}
 \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue, urlcolor=blue]{hyperref}
 \usepackage{graphicx}
 \usepackage{enumitem}
@@ -12,11 +13,13 @@
 \usepackage{xcolor}
 \usepackage[backend=biber, style=authortitle, bibencoding=auto]{biblatex}
 \usepackage[medium, compact, explicit]{titlesec}
-\usepackage{url}
+\usepackage{xurl}
 \usepackage{fancyhdr}
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{makecell}
+\usepackage{afterpage}
+\usepackage{emptypage}
 \usepackage{layouts}
 
 % sans-serif urls
@@ -66,11 +69,9 @@
 
 \setlength{\tabcolsep}{0pt}
 
-\setlength{\columnsep}{46.842515mm}
-
 % meta data
 \title{Merkblatt Skitouren}
-\author{Oliver Fabel}
+\author{SAC Aarau}
 \date{\today}
 
 \begin{document}
@@ -83,14 +84,46 @@
   \fancyfoot[R]{\footnotesize{Publiziert am \today}}
 
   \nocite{*}
-  \begin{multicols*}{2}[]
-    \input{chapters/lvs.tex}
-    \input{chapters/lawinen.tex}
-    \input{chapters/touren.tex}
-    \input{chapters/orientierung.tex}
-    \input{chapters/ausruestung.tex}
-    \input{chapters/tipps.tex}
-    \input{chapters/literatur.tex}
-    \input{chapters/impressum.tex}
-  \end{multicols*}
+  \afterpage{
+    \newgeometry{a4paper, landscape, margin=15mm, right=61.842515mm}
+
+    \setlength{\columnsep}{46.842515mm}
+
+    \begin{multicols*}{2}[
+      \parbox{267mm}{
+        \vspace{-15mm}
+        \maketitle
+        \vspace{-5mm}
+        \thispagestyle{fancy}
+      }
+    ]
+      \input{chapters/lvs.tex}
+      \input{chapters/lawinen.tex}
+      \input{chapters/touren.tex}
+      \input{chapters/orientierung.tex}
+      \input{chapters/ausruestung.tex}
+      \input{chapters/tipps.tex}
+    \end{multicols*}
+
+    \restoregeometry
+  }
+
+  \afterpage{
+    \newgeometry{a4paper, landscape, margin=15mm}
+
+    \setlength{\columnsep}{10pt}
+
+    \begin{multicols*}{3}[]
+      \input{chapters/literatur.tex}
+      \input{chapters/impressum.tex}
+
+      %\printinunitsof{mm}\prntlen{\linewidth}
+      %\printinunitsof{mm}\prntlen{\textwidth}
+      %\printinunitsof{mm}\prntlen{\columnwidth}
+      %\printinunitsof{mm}\prntlen{\columnsep}
+
+    \end{multicols*}
+
+    \restoregeometry
+  }
 \end{document}
